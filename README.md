@@ -17,4 +17,5 @@ Start a leg by right clicking with the survey stick, then right click all survey
 Once you finish, type ```/survey end``` to end the survey file. The file is written to the "MinecraftSurveyTool" directory in your home directory. This cannot be changed, yet.
 
 
-This is an alpha release, and it's super rough around the edges.
+This is an alpha release, and it's super rough around the edges. See this link for a video demo:
+https://youtu.be/H05nH6NLJkw
