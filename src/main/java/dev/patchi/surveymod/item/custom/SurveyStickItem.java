@@ -55,8 +55,8 @@ public class SurveyStickItem extends Item {
                     Vec3 posAVec = new Vec3(positionA.getX(), positionA.getY(), positionA.getZ());
                     Vec3 posBVec = new Vec3(positionB.getX(), positionB.getY(), positionB.getZ());
 
-                    String nameA = "X" + (int) posAVec.y() + "Y" + (int) posAVec.y() + "Z" + (int) posAVec.z();
-                    String nameB = "X" + (int) posBVec.y() + "Y" + (int) posBVec.y() + "Z" + (int) posBVec.z();
+                    String nameA = "X" + (int) posAVec.x() + "Y" + (int) posAVec.y() + "Z" + (int) posAVec.z();
+                    String nameB = "X" + (int) posBVec.x() + "Y" + (int) posBVec.y() + "Z" + (int) posBVec.z();
 
                     Vec3 diff = posBVec.subtract(posAVec);
                     double distance = diff.length();
