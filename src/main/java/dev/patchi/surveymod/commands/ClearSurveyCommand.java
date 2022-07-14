@@ -18,7 +18,7 @@ public class ClearSurveyCommand {
 
     private int clearSurvey(CommandSourceStack source) throws CommandSyntaxException {
 
-        source.sendSuccess(Component.nullToEmpty("Clearing survey"), true);
+        source.sendSuccess(Component.nullToEmpty("Clearing stored survey data"), true);
         SurveyMod.surveyPoints.clear();
 
         return 0;

@@ -13,9 +13,11 @@ public class SetSurveyNameCommand {
         dispatcher.register(Commands.literal("survey")
                 .then(Commands.literal("name")
                         .then(Commands.argument("name", StringArgumentType.string()).executes((command) -> {
-                            command.getSource().sendSuccess(Component.nullToEmpty("Beginning new survey"), true);
+
                             SurveyMod.surveyName = StringArgumentType.getString(command,"name");
+                            command.getSource().sendSuccess(Component.nullToEmpty("Set survey filename: " + SurveyMod.surveyName), true);
                             return 0;
+
         }))));
     }
 

@@ -23,12 +23,12 @@ public class SaveSurveyCommand {
 
     private int saveSurvey(CommandSourceStack source) throws CommandSyntaxException {
 
-        source.sendSuccess(Component.nullToEmpty("Saving survey"), true);
-        String savedir = System.getProperty("user.home") + "/MinecraftSurveyTool";
-        new File(savedir).mkdirs();
-
         FileWriter writer = null;
         try {
+
+
+            String savedir = System.getProperty("user.home") + "/MinecraftSurveyTool";
+            new File(savedir).mkdirs();
 
             writer = new FileWriter(savedir + "/" + SurveyMod.surveyName + ".svx", true);
 
@@ -42,8 +42,13 @@ public class SaveSurveyCommand {
             writer.write("*end" + System.lineSeparator());
             writer.close();
 
+            SurveyMod.surveyPoints.clear();
+
+            source.sendSuccess(Component.nullToEmpty("Saving stored data"), true);
+
         } catch (IOException e) {
             e.printStackTrace();
+            source.sendFailure(Component.nullToEmpty("Failed to save leg"));
         }
 
         return 0;

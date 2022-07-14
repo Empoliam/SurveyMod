@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class SurveyStickItem extends Item {
 
-    boolean targetSecond = false;
     BlockPos positionA;
     BlockPos positionB;
+    boolean measuring = false;
 
     public SurveyStickItem(Properties pProperties) {
         super(pProperties);
@@ -31,43 +31,46 @@ public class SurveyStickItem extends Item {
         if(pContext.getLevel().isClientSide()) {
 
             Player pPlayer = pContext.getPlayer();
-            Level pLevel = pContext.getLevel();
 
+            if(pPlayer.isShiftKeyDown()) {
 
-            if(!targetSecond) {
-
-                positionA = pContext.getClickedPos();
-                pPlayer.sendMessage(new TextComponent("Station A Selected"), pPlayer.getUUID());
-                targetSecond = true;
+                if(measuring) {
+                    measuring = false;
+                    pPlayer.sendMessage(new TextComponent("Stopped surveying"), pPlayer.getUUID());
+                }
 
             } else {
 
-                positionB = pContext.getClickedPos();
+                if (!measuring) {
 
-                Vec3 posAVec = new Vec3(positionA.getX(),positionA.getY(),positionA.getZ());
-                Vec3 posBVec = new Vec3(positionB.getX(),positionB.getY(),positionB.getZ());
+                    measuring = true;
+                    pPlayer.sendMessage(new TextComponent("Started surveying"), pPlayer.getUUID());
+                    positionA = pContext.getClickedPos();
 
-                String nameA = "X" + (int)posAVec.y() + "Y" + (int)posAVec.y() + "Z"+ (int)posAVec.z();
-                String nameB = "X" + (int)posBVec.y() + "Y" + (int)posBVec.y() + "Z"+ (int)posBVec.z();
+                } else {
 
-                Vec3 diff = posBVec.subtract(posAVec);
-                double distance = diff.length();
-                double compass = 180 - (Math.toDegrees(Math.atan2(diff.x(),diff.z())));
-                double clino = Math.toDegrees(Math.asin(diff.y()/diff.length()));
+                    positionB = pContext.getClickedPos();
 
-                pPlayer.sendMessage(new TextComponent("Station B Selected"), pPlayer.getUUID());
 
-                //pPlayer.sendMessage(new TextComponent("Distance = " + distance), pPlayer.getUUID());
-                //pPlayer.sendMessage(new TextComponent("Compass = " + compass), pPlayer.getUUID());
-                //pPlayer.sendMessage(new TextComponent("Clino = " + clino), pPlayer.getUUID());
+                    Vec3 posAVec = new Vec3(positionA.getX(), positionA.getY(), positionA.getZ());
+                    Vec3 posBVec = new Vec3(positionB.getX(), positionB.getY(), positionB.getZ());
 
-                SurveyMod.surveyPoints.add(nameA + " " + nameB + " " + distance + " " + compass + " " + clino);
+                    String nameA = "X" + (int) posAVec.y() + "Y" + (int) posAVec.y() + "Z" + (int) posAVec.z();
+                    String nameB = "X" + (int) posBVec.y() + "Y" + (int) posBVec.y() + "Z" + (int) posBVec.z();
 
-                targetSecond = false;
+                    Vec3 diff = posBVec.subtract(posAVec);
+                    double distance = diff.length();
+                    double compass = 180 - (Math.toDegrees(Math.atan2(diff.x(), diff.z())));
+                    double clino = Math.toDegrees(Math.asin(diff.y() / diff.length()));
+
+                    pPlayer.sendMessage(new TextComponent("Measured to station " + nameB), pPlayer.getUUID());
+                    SurveyMod.surveyPoints.add(nameA + " " + nameB + " " + distance + " " + compass + " " + clino);
+
+                    positionA = positionB;
+
+                }
 
             }
-
-
 
         }
 

@@ -13,9 +13,11 @@ public class SetCaveNameCommand {
         dispatcher.register(Commands.literal("survey")
                 .then(Commands.literal("cave")
                         .then(Commands.argument("name", StringArgumentType.string()).executes((command) -> {
-                            command.getSource().sendSuccess(Component.nullToEmpty("Beginning new survey"), true);
+
                             SurveyMod.caveName = StringArgumentType.getString(command,"name");
+                            command.getSource().sendSuccess(Component.nullToEmpty("Set cave name: " + SurveyMod.caveName), true);
                             return 0;
+
         }))));
     }
 
