@@ -2,8 +2,7 @@ package dev.patchi.surveymod.events;
 
 
 import dev.patchi.surveymod.SurveyMod;
-import dev.patchi.surveymod.commands.ClearSurveyCommand;
-import dev.patchi.surveymod.commands.SaveSurveyCommand;
+import dev.patchi.surveymod.commands.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +16,9 @@ public class ModClientEvents {
     public static void onCommandsRegister(RegisterCommandsEvent event) {
         new SaveSurveyCommand(event.getDispatcher());
         new ClearSurveyCommand(event.getDispatcher());
-
+        new SetSurveyNameCommand(event.getDispatcher());
+        new BeginSurveyCommand(event.getDispatcher());
+        new EndSurveyCommand(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
     }
 

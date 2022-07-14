@@ -1,5 +1,6 @@
 package dev.patchi.surveymod.item.custom;
 
+import dev.patchi.surveymod.SurveyMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.TextComponent;
@@ -19,11 +20,6 @@ public class SurveyStickItem extends Item {
     boolean targetSecond = false;
     BlockPos positionA;
     BlockPos positionB;
-
-    int surveyStationA = 0;
-    int surveyStationB = 1;
-
-    public static ArrayList<String> surveyPoints = new ArrayList<String>();
 
     public SurveyStickItem(Properties pProperties) {
         super(pProperties);
@@ -62,7 +58,7 @@ public class SurveyStickItem extends Item {
                 pPlayer.sendMessage(new TextComponent("Compass = " + compass), pPlayer.getUUID());
                 pPlayer.sendMessage(new TextComponent("Clino = " + clino), pPlayer.getUUID());
 
-                surveyPoints.add(nameA + " " + nameB + " " + distance + " " + compass + " " + clino);
+                SurveyMod.surveyPoints.add(nameA + " " + nameB + " " + distance + " " + compass + " " + clino);
 
                 targetSecond = false;
 
