@@ -33,7 +33,7 @@ credits="Empoliam" #optional
 # A text field displayed in the mod UI
 authors="Empoliam" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''This is a long form description of the mod. You can write whatever you want here'''
+description='''Minecraft cave surveying tools'''
 
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.18.2,1.19)"
