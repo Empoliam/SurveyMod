@@ -19,6 +19,8 @@ public class ModClientEvents {
         new SetSurveyNameCommand(event.getDispatcher());
         new BeginSurveyCommand(event.getDispatcher());
         new EndSurveyCommand(event.getDispatcher());
+        new SetCaveNameCommand(event.getDispatcher());
+
         ConfigCommand.register(event.getDispatcher());
     }
 

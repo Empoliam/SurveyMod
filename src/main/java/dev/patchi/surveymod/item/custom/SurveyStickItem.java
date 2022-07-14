@@ -37,6 +37,7 @@ public class SurveyStickItem extends Item {
             if(!targetSecond) {
 
                 positionA = pContext.getClickedPos();
+                pPlayer.sendMessage(new TextComponent("Station A Selected"), pPlayer.getUUID());
                 targetSecond = true;
 
             } else {
@@ -54,9 +55,11 @@ public class SurveyStickItem extends Item {
                 double compass = 180 - (Math.toDegrees(Math.atan2(diff.x(),diff.z())));
                 double clino = Math.toDegrees(Math.asin(diff.y()/diff.length()));
 
-                pPlayer.sendMessage(new TextComponent("Distance = " + distance), pPlayer.getUUID());
-                pPlayer.sendMessage(new TextComponent("Compass = " + compass), pPlayer.getUUID());
-                pPlayer.sendMessage(new TextComponent("Clino = " + clino), pPlayer.getUUID());
+                pPlayer.sendMessage(new TextComponent("Station B Selected"), pPlayer.getUUID());
+
+                //pPlayer.sendMessage(new TextComponent("Distance = " + distance), pPlayer.getUUID());
+                //pPlayer.sendMessage(new TextComponent("Compass = " + compass), pPlayer.getUUID());
+                //pPlayer.sendMessage(new TextComponent("Clino = " + clino), pPlayer.getUUID());
 
                 SurveyMod.surveyPoints.add(nameA + " " + nameB + " " + distance + " " + compass + " " + clino);
 

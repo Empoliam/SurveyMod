@@ -22,7 +22,7 @@ public class SurveyMod {
 
     public static ArrayList<String> surveyPoints = new ArrayList<String>();
     public static String surveyName = "output";
-
+    public static String caveName = "cave";
 
     public SurveyMod() {
 

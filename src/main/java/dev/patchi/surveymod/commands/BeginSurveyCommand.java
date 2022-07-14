@@ -30,7 +30,7 @@ public class BeginSurveyCommand {
 
             writer = new FileWriter(savedir + "/" + SurveyMod.surveyName + ".svx");
 
-            writer.write("*begin" + System.lineSeparator());
+            writer.write("*begin " + SurveyMod.caveName + System.lineSeparator());
             writer.close();
 
         } catch (IOException e) {
