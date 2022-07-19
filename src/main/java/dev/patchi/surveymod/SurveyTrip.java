@@ -7,6 +7,7 @@ public class SurveyTrip {
 
     String tripName = "trip1";
     List<SurveyLeg> legList = new ArrayList<SurveyLeg>();
+    public boolean saved = false;
 
     public SurveyTrip(String trip) {
         this.tripName = trip;

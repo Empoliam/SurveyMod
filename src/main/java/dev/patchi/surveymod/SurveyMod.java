@@ -28,7 +28,7 @@ public class SurveyMod {
     public static String surveyFileName;
 
     public static SurveyTrip activeTrip;
-    public static List<SurveyTrip> recordedLegs = new ArrayList<SurveyTrip>();
+    public static List<SurveyTrip> recordedTrips = new ArrayList<SurveyTrip>();
 
     public SurveyMod() {
 
@@ -47,6 +47,9 @@ public class SurveyMod {
 
     public static void beginSurvey() throws IOException {
 
+        activeTrip = null;
+        recordedTrips.clear();
+
         FileWriter writer;
         String surveyDirectory = System.getProperty("user.home") + "/MinecraftSurveyTool";
         new File(surveyDirectory).mkdirs();
@@ -57,28 +60,39 @@ public class SurveyMod {
         writer.write("*begin " + caveName + System.lineSeparator());
         writer.close();
 
-        recordedLegs.add(new SurveyTrip(""));
-        activeTrip = recordedLegs.get(recordedLegs.size()-1);
+    }
+
+    public static void saveSurvey() throws IOException {
+
+        FileWriter writer = new FileWriter(surveyFileName, true);
+
+        for(SurveyTrip T : recordedTrips) {
+
+            if(T.saved) continue;
+
+            writer.write("*begin " + T.tripName + System.lineSeparator());
+            writer.write("*data normal from to tape compass clino" + System.lineSeparator());
+
+            for (SurveyLeg leg : T.getLegList()) {
+                writer.write(leg.toString() + System.lineSeparator());
+            }
+
+            writer.write("*end " + T.tripName + System.lineSeparator());
+
+        }
+
+        writer.close();
 
     }
 
-    public static void saveTrip() throws IOException {
+    public static void newTrip(String name) {
 
-        FileWriter writer;
-
-        writer = new FileWriter(surveyFileName, true);
-
-        writer.write("*begin" + System.lineSeparator());
-        writer.write("*data normal from to tape compass clino" + System.lineSeparator());
-
-        for (SurveyLeg leg : activeTrip.getLegList()) {
-            writer.write(leg.toString() + System.lineSeparator());
+        if(name == "") {
+            name = "trip" + recordedTrips.size();
         }
 
-        writer.write("*end" + System.lineSeparator());
-        writer.close();
-
-        activeTrip.clearList();
+        recordedTrips.add(new SurveyTrip(name));
+        activeTrip = recordedTrips.get(recordedTrips.size()-1);
 
     }
 

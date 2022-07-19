@@ -14,12 +14,13 @@ public class ModClientEvents {
 
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event) {
-        new SaveTripCommand(event.getDispatcher());
+        new SaveSurveyCommand(event.getDispatcher());
         new ClearSurveyCommand(event.getDispatcher());
         new SetSurveyNameCommand(event.getDispatcher());
         new BeginSurveyCommand(event.getDispatcher());
         new EndSurveyCommand(event.getDispatcher());
         new SetCaveNameCommand(event.getDispatcher());
+        new StartNewTripCommand(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
     }
