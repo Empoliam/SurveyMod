@@ -3,6 +3,7 @@ package dev.patchi.surveymod.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.patchi.surveymod.SurveyMod;
+import dev.patchi.surveymod.SurveyTrip;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -19,7 +20,7 @@ public class ClearSurveyCommand {
     private int clearSurvey(CommandSourceStack source) throws CommandSyntaxException {
 
         source.sendSuccess(Component.nullToEmpty("Clearing stored survey data"), true);
-        SurveyMod.surveyPoints.clear();
+        SurveyMod.activeTrip.clearList();
 
         return 0;
     }

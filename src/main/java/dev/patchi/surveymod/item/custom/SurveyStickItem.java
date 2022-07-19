@@ -1,16 +1,13 @@
 package dev.patchi.surveymod.item.custom;
 
+import dev.patchi.surveymod.SurveyLeg;
 import dev.patchi.surveymod.SurveyMod;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
@@ -64,8 +61,8 @@ public class SurveyStickItem extends Item {
                     double clino = Math.toDegrees(Math.asin(diff.y() / diff.length()));
 
                     pPlayer.sendMessage(new TextComponent("Measured to station " + nameB), pPlayer.getUUID());
-                    SurveyMod.surveyPoints.add(nameA + " " + nameB + " " + distance + " " + compass + " " + clino);
 
+                    SurveyMod.activeTrip.addLeg(new SurveyLeg(nameA, nameB, distance, clino, compass));
                     positionA = positionB;
 
                 }

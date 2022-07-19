@@ -14,7 +14,7 @@ public class ModClientEvents {
 
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event) {
-        new SaveSurveyCommand(event.getDispatcher());
+        new SaveTripCommand(event.getDispatcher());
         new ClearSurveyCommand(event.getDispatcher());
         new SetSurveyNameCommand(event.getDispatcher());
         new BeginSurveyCommand(event.getDispatcher());

@@ -10,8 +10,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(SurveyMod.MOD_ID)
 public class SurveyMod {
@@ -20,9 +18,10 @@ public class SurveyMod {
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public static ArrayList<String> surveyPoints = new ArrayList<String>();
     public static String surveyName = "output";
     public static String caveName = "cave";
+
+    public static SurveyTrip activeTrip = new SurveyTrip("");
 
     public SurveyMod() {
 
@@ -37,9 +36,6 @@ public class SurveyMod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
 }
