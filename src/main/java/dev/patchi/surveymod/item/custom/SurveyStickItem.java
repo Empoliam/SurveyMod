@@ -25,6 +25,12 @@ public class SurveyStickItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
 
+        if(SurveyMod.activeTrip == null) {
+            Player pPlayer = pContext.getPlayer();
+            pPlayer.sendMessage((new TextComponent("Survey not initialized!")), pPlayer.getUUID());
+            return InteractionResult.FAIL;
+        }
+
         if(pContext.getLevel().isClientSide()) {
 
             Player pPlayer = pContext.getPlayer();
@@ -47,7 +53,6 @@ public class SurveyStickItem extends Item {
                 } else {
 
                     positionB = pContext.getClickedPos();
-
 
                     Vec3 posAVec = new Vec3(positionA.getX(), positionA.getY(), positionA.getZ());
                     Vec3 posBVec = new Vec3(positionB.getX(), positionB.getY(), positionB.getZ());

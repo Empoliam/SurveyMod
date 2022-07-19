@@ -22,34 +22,18 @@ public class SaveTripCommand {
 
     private int saveTrip(CommandSourceStack source) throws CommandSyntaxException {
 
-        FileWriter writer = null;
         try {
 
+            SurveyMod.saveTrip();
 
-            String savedir = System.getProperty("user.home") + "/MinecraftSurveyTool";
-            new File(savedir).mkdirs();
-
-            writer = new FileWriter(savedir + "/" + SurveyMod.surveyName + ".svx", true);
-
-            writer.write("*begin" + System.lineSeparator());
-            writer.write("*data normal from to tape compass clino" + System.lineSeparator());
-
-            for (SurveyLeg leg : SurveyMod.activeTrip.getLegList()) {
-                writer.write(leg.toString() + System.lineSeparator());
-            }
-
-            writer.write("*end" + System.lineSeparator());
-            writer.close();
-
-            SurveyMod.activeTrip.clearList();
-
-            source.sendSuccess(Component.nullToEmpty("Saving stored data"), true);
 
         } catch (IOException e) {
             e.printStackTrace();
             source.sendFailure(Component.nullToEmpty("Failed to save leg"));
+            return 1;
         }
 
+        source.sendSuccess(Component.nullToEmpty("Saved stored data"), true);
         return 0;
     }
 

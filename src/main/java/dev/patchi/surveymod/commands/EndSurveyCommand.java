@@ -21,22 +21,18 @@ public class EndSurveyCommand {
 
     private int endSurvey(CommandSourceStack source) throws CommandSyntaxException {
 
-        source.sendSuccess(Component.nullToEmpty("Ending survey"), true);
-        String savedir = System.getProperty("user.home") + "/MinecraftSurveyTool";
-        new File(savedir).mkdirs();
 
-        FileWriter writer = null;
         try {
 
-            writer = new FileWriter(savedir + "/" + SurveyMod.surveyName + ".svx", true);
-
-            writer.write("*end" + System.lineSeparator());
-            writer.close();
+            SurveyMod.endSurvey();
 
         } catch (IOException e) {
+            source.sendFailure(Component.nullToEmpty("Failed to save survey file."));
             e.printStackTrace();
+            return 1;
         }
 
+        source.sendSuccess(Component.nullToEmpty("Ending survey"), true);
         return 0;
     }
 

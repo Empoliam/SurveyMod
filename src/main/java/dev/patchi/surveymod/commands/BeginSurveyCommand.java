@@ -22,18 +22,10 @@ public class BeginSurveyCommand {
     private int beginSurvey(CommandSourceStack source) throws CommandSyntaxException {
 
         source.sendSuccess(Component.nullToEmpty("Beginning new survey"), true);
-        String savedir = System.getProperty("user.home") + "/MinecraftSurveyTool";
-        new File(savedir).mkdirs();
-
-        FileWriter writer = null;
         try {
-
-            writer = new FileWriter(savedir + "/" + SurveyMod.surveyName + ".svx");
-
-            writer.write("*begin " + SurveyMod.caveName + System.lineSeparator());
-            writer.close();
-
+            SurveyMod.beginSurvey();
         } catch (IOException e) {
+            source.sendFailure(Component.nullToEmpty("Failed to create survey file"));
             e.printStackTrace();
         }
 
