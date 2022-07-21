@@ -1,12 +1,16 @@
 package dev.patchi.surveymod;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class SurveyTrip {
 
     String tripName = "trip1";
     List<SurveyLeg> legList = new ArrayList<SurveyLeg>();
+
+    HashSet<String> stationList = new HashSet<>();
+
     public boolean saved = false;
 
     public SurveyTrip(String trip) {
@@ -15,6 +19,12 @@ public class SurveyTrip {
 
     public void addLeg(SurveyLeg leg) {
         legList.add(leg);
+        addSurveyStation(leg.getFrom());
+        addSurveyStation(leg.getTo());
+    }
+
+    public void addSurveyStation(String station) {
+        stationList.add(station);
     }
 
     public List<SurveyLeg> getLegList() {
@@ -23,6 +33,7 @@ public class SurveyTrip {
 
     public void clearList() {
         legList.clear();
+        stationList.clear();
     }
 
 }

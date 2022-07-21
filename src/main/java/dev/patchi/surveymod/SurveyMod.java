@@ -78,6 +78,7 @@ public class SurveyMod {
             }
 
             writer.write("*end " + T.tripName + System.lineSeparator());
+            T.saved = true;
 
         }
 
@@ -99,6 +100,14 @@ public class SurveyMod {
     public static void endSurvey() throws IOException {
 
         FileWriter writer = new FileWriter(surveyFileName, true);
+
+        for(SurveyTrip T : recordedTrips) {
+
+            for(String s : T.stationList) {
+                writer.write("*equate " + T.tripName + "." + s + " " + s + System.lineSeparator());
+            }
+
+        }
 
         writer.write("*end " + caveName + System.lineSeparator());
         writer.close();
