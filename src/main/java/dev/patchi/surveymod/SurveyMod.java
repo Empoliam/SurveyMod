@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(SurveyMod.MOD_ID)
@@ -101,15 +103,23 @@ public class SurveyMod {
 
         FileWriter writer = new FileWriter(surveyFileName, true);
 
+        Set<String> allStations = new HashSet<>();
+
         for(SurveyTrip T : recordedTrips) {
 
             for(String s : T.stationList) {
                 writer.write("*equate " + T.tripName + "." + s + " " + s + System.lineSeparator());
+                allStations.add(s);
             }
 
         }
 
         writer.write("*end " + caveName + System.lineSeparator());
+
+        for(String s : allStations) {
+            writer.write("*equate " + caveName + "." + s + " " + s + System.lineSeparator());
+        }
+
         writer.close();
 
     }
