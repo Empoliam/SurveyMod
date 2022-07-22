@@ -4,6 +4,8 @@ Cave surveying tools, for  actual cavers.
 
 Have you ever used a minimap mod with a cave overlay and thought: "this is too easy and doesn't involve enough external software"? Well, good news! This mod adds some tools that will help you quickly produce .svx files for use in cave survey software of your choice.
 
+Requires Forge.
+
 Craft a survey stick with the following recipe:
 ```
   R
