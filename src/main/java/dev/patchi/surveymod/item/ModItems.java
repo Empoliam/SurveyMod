@@ -2,6 +2,7 @@ package dev.patchi.surveymod.item;
 
 
 import dev.patchi.surveymod.SurveyMod;
+import dev.patchi.surveymod.item.custom.SplayStickItem;
 import dev.patchi.surveymod.item.custom.SurveyStickItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -16,6 +17,12 @@ public class ModItems {
 
     public static final RegistryObject<Item> SURVEYSTICK = ITEMS.register("surveystick",
             ()-> new SurveyStickItem(new Item.Properties()
+                    .tab(CreativeModeTab.TAB_MISC)
+                    .stacksTo(1)
+            ));
+
+    public static final RegistryObject<Item> SPLAYSTICK = ITEMS.register("splaystick",
+            ()-> new SplayStickItem(new Item.Properties()
                     .tab(CreativeModeTab.TAB_MISC)
                     .stacksTo(1)
             ));

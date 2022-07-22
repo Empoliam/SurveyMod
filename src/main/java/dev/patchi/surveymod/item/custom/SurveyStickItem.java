@@ -25,13 +25,13 @@ public class SurveyStickItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
 
-        if(SurveyMod.activeTrip == null) {
-            Player pPlayer = pContext.getPlayer();
-            pPlayer.sendMessage((new TextComponent("Survey not initialized!")), pPlayer.getUUID());
-            return InteractionResult.FAIL;
-        }
-
         if(pContext.getLevel().isClientSide()) {
+
+            if(SurveyMod.activeTrip == null) {
+                Player pPlayer = pContext.getPlayer();
+                pPlayer.sendMessage((new TextComponent("Survey not initialized!")), pPlayer.getUUID());
+                return InteractionResult.FAIL;
+            }
 
             Player pPlayer = pContext.getPlayer();
 
