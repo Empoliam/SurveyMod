@@ -30,7 +30,8 @@ public class SurveyMod {
     public static String surveyFileName;
 
     public static SurveyTrip activeTrip;
-    public static List<SurveyTrip> recordedTrips = new ArrayList<SurveyTrip>();
+    public static List<SurveyTrip> recordedTrips = new ArrayList<>();
+    public static List<SurveySplay> recordedSplays = new ArrayList<>();
 
     public SurveyMod() {
 
@@ -77,6 +78,12 @@ public class SurveyMod {
 
             for (SurveyLeg leg : T.getLegList()) {
                 writer.write(leg.toString() + System.lineSeparator());
+            }
+
+            writer.write("*data passage station left right up down" + System.lineSeparator());
+
+            for (SurveySplay splay : T.getSplayList()) {
+                writer.write(splay.toString() + System.lineSeparator());
             }
 
             writer.write("*end " + T.tripName + System.lineSeparator());

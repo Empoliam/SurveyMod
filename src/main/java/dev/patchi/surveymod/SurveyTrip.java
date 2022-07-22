@@ -9,6 +9,8 @@ public class SurveyTrip {
     String tripName = "trip1";
     List<SurveyLeg> legList = new ArrayList<SurveyLeg>();
 
+    List<SurveySplay> splayList = new ArrayList<>();
+
     HashSet<String> stationList = new HashSet<>();
 
     public boolean saved = false;
@@ -23,6 +25,10 @@ public class SurveyTrip {
         addSurveyStation(leg.getTo());
     }
 
+    public void addSplay(SurveySplay splay) {
+        splayList.add(splay);
+    }
+
     public void addSurveyStation(String station) {
         stationList.add(station);
     }
@@ -31,9 +37,14 @@ public class SurveyTrip {
         return legList;
     }
 
+    public List<SurveySplay> getSplayList() {
+        return splayList;
+    }
+
     public void clearList() {
         legList.clear();
         stationList.clear();
+        splayList.clear();
     }
 
 }
